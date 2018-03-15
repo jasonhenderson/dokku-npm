@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
+
+APP="$1"; IMAGE="dokku/$APP"
+echo "-----> Injecting apt repositories and packages ..."
+
+DIR=/app
+
+COMMAND=$(cat <<EOF
+if [ -f $DIR/.npmpackages ]; then
+    cat "$DIR/.npmpackages" | while read package; do
+        if [ -n "\$package" ]; then
+            npm install -g "\$package"
+            echo "-----> Installed package: \$package"
+        fi
+    done
+fi
+sleep 1 # wait so that docker run has not exited before docker attach
+EOF
+)
+id=$(docker run -d $IMAGE /bin/bash -e -c "$COMMAND")
+#enable logs
+docker attach $id
+test $(docker wait $id) -eq 0
+docker commit $id $IMAGE > /dev/null
