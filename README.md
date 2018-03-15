@@ -3,7 +3,7 @@ dokku-npm
 
 Run npm to install global packages globally.
 
-dokku-npm is a plugin for [dokku][dokku] that installs apt packages in your dokku environment.
+dokku-npm is a plugin for [dokku](https://github.com/dokku/dokku) that installs apt packages in your dokku environment.
 This is mostly useful for instances where you have an app that depends on packages being here.
 
 ## Installation
