@@ -26,12 +26,19 @@ dokku plugins-install
 
 When you deploy your project, the dokku-npm plugin will install according to your project's `.npmpackages` files. You should store this file in your projects root as the docker container will copy your project to its /app directory. This is where the dokku-npm plugin looks for `.npmpackages`.
 
-### .npmpackages
-This file should contain npm packages to install, accepts multiple packages per line, and multiple lines.
+### npm-packages
+This file should contain npm packages to install, accepts one package per line, and multiple lines.
 
 Example:
 ```
 puppeteer
 ```
 
-[dokku]: https://github.com/progrium/dokku
+### wget-packages
+This file should contain command lines that install additional packages using wget, accepts one package per line, and multiple lines.
+
+Example:
+```
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.py | sudo python -c "import sys; main=lambda:sys.stderr.write('Download failed\n'); exec(sys.stdin.read()); main()"
+
+```
