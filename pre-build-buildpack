@@ -8,11 +8,19 @@ echo "-----> Injecting apt repositories and packages ..."
 DIR=/app
 
 COMMAND=$(cat <<EOF
-if [ -f $DIR/.npmpackages ]; then
-    cat "$DIR/.npmpackages" | while read package; do
+if [ -f $DIR/npm-packages ]; then
+    cat "$DIR/npm-packages" | while read package; do
         if [ -n "\$package" ]; then
             npm install -g "\$package"
-            echo "-----> Installed package: \$package"
+            echo "-----> Installed npm package: \$package"
+        fi
+    done
+fi
+if [ -f $DIR/wget-packages ]; then
+    cat "$DIR/wget-packages" | while read package; do
+        if [ -n "\$package" ]; then
+            "\$package"
+            echo "-----> Installed wget package: \$package"
         fi
     done
 fi
