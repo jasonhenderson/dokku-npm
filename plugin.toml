@@ -1,6 +1,6 @@
 [plugin]
 name = "dokku-npm"
-description = "Run command line NPM for global installs"
+description = "Run command line NPM and WGET for global installs"
 version = "0.1.0"
 website_url = "https://github.com/jasonhenderson/dokku-npm"
 [plugin.config]
