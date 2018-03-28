@@ -24,6 +24,8 @@ dokku plugins-install
 
 ## Usage
 
+> ***Make sure your you add a new line at the end or the last line will be ignored***
+
 When you deploy your project, the dokku-npm plugin will install according to your project's `.npmpackages` files. You should store this file in your projects root as the docker container will copy your project to its /app directory. This is where the dokku-npm plugin looks for `.npmpackages`.
 
 ### npm-packages

@@ -8,22 +8,25 @@ echo "-----> Injecting npm and wget packages ..."
 DIR=/app
 
 COMMAND=$(cat <<EOF
+export DEBIAN_FRONTEND=noninteractive
+
 if [ -f $DIR/npm-packages ]; then
-    cat "$DIR/npm-packages" | while read package; do
-        if [ -n "\$package" ]; then
-            npm install -g "\$package"
-            echo "-----> Installed npm package: \$package"
+    cat "$DIR/npm-packages" | while read npm_package; do
+        if [ -n "\$npm_package" ]; then
+            npm install -g "\$npm_package"
+            echo "-----> Installed npm package: \$npm_package"
         fi
     done
 fi
 if [ -f $DIR/wget-packages ]; then
-    cat "$DIR/wget-packages" | while read package; do
-        if [ -n "\$package" ]; then
-            "\$package"
-            echo "-----> Installed wget package: \$package"
+    cat "$DIR/wget-packages" | while read wget_package; do
+        if [ -n "\$wget_package" ]; then
+            "\$wget_package"
+            echo "-----> Installed wget package: \$wget_package"
         fi
     done
 fi
+
 sleep 1 # wait so that docker run has not exited before docker attach
 EOF
 )
