@@ -13,7 +13,7 @@ export DEBIAN_FRONTEND=noninteractive
 if [ -f $DIR/npm-packages ]; then
     cat "$DIR/npm-packages" | while read npm_package; do
         if [ -n "\$npm_package" ]; then
-            npm install -g "\$npm_package"
+            sudo npm install -g "\$npm_package"
             echo "-----> Installed npm package: \$npm_package"
         fi
     done
