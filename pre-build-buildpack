@@ -3,7 +3,7 @@
 set -eo pipefail; [[ $DOKKU_TRACE ]] && set -x
 
 APP="$1"; IMAGE="dokku/$APP"
-echo "-----> Injecting apt repositories and packages ..."
+echo "-----> Injecting npm and wget packages ..."
 
 DIR=/app
 
